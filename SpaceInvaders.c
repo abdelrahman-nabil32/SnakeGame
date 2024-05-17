@@ -68,7 +68,12 @@ void EdgeCounter_Init(void);
 
 
 
+
+
 // *************************** Capture image dimensions out of BMP**********
+
+
+
 
 
 
@@ -138,5 +143,37 @@ void GPIOPortF_Handler(void){
 	  }
 }
 
+//////////////**************
+// Initialize snake at given position
+void initializeSnake(Snake *snake, int x, int y) {
+    snake->x[0] = x;
+    snake->y[0] = y;
+    snake->length = 1;
+    snake->direction = RIGHT;
+}
+// Move snake
+void moveSnake(Snake *snake) {
+    // Move body segments
+    for ( i = snake->length - 1; i > 0; --i) {
+        snake->x[i] = snake->x[i-1];
+        snake->y[i] = snake->y[i-1];
+    }
+    
+    // Move head based on direction
+    switch (snake->direction) {
+        case UP:
+            snake->y[0]-=myBlankH;
+            break;
+        case DOWN:
+            snake->y[0]+=myBlankH;
+            break;
+        case LEFT:
+            snake->x[0]-=myBlankW;
+            break;
+        case RIGHT:
+            snake->x[0]+=myBlankW;
+            break;
+    }
+}
 
 
