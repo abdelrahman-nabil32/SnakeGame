@@ -1,0 +1,17 @@
+Dependencies for Project 'SpaceInvaders', Target 'SpaceInvaders': (DO NOT MODIFY !)
+F (.\startup.s)(0x66477F3A)(--cpu Cortex-M4 --pd "__RTX SETA 1" --pd "__EVAL SETA 1" -g --apcs=interwork -I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\Nokia5110.c)(0x5343FF4E)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\nokia5110.o --omf_browse .\nokia5110.crf --depend .\nokia5110.d)
+I (Nokia5110.h)(0x5343FF4E)
+F (.\random.s)(0x54A1177A)(--cpu Cortex-M4 --pd "__RTX SETA 1" --pd "__EVAL SETA 1" -g --apcs=interwork -I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\Luminary--list .\random.lst --xref -o .\random.o --depend .\random.d)
+F (.\SpaceInvaders.c)(0x6647DC31)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\spaceinvaders.o --omf_browse .\spaceinvaders.crf --depend .\spaceinvaders.d)
+I (./tm4c123gh6pm.h)(0x51D44682)
+I (Nokia5110.h)(0x5343FF4E)
+I (Random.h)(0x54A1177A)
+I (TExaS.h)(0x569B5528)
+I (D:\Keil\ARM\ARMCC\include\stdio.h)(0x51C819B4)
+I (D:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C819B4)
+I (D:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C819B4)
+I (D:\Keil\ARM\ARMCC\include\time.h)(0x51C819B4)
+I (D:\Keil\ARM\ARMCC\include\math.h)(0x51C819B4)
+F (.\TExaS.c)(0x569B5548)(-c --cpu Cortex-M4 -D__RTX -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\texas.o --omf_browse .\texas.crf --depend .\texas.d)
+I (TExaS.h)(0x569B5528)
