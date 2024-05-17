@@ -15,6 +15,7 @@
 
 //here is the registers 
 
+
 typedef enum {
     UP,
     DOWN,
@@ -52,10 +53,11 @@ void EnableInterrupts(void);  // Enable interrupts
 long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
-
 void EdgeCounter_Init(void);
-
-
+bool checkFood(Snake *snake, Food *food);
+void generateNewFood(Food *food);
+void initializeFood(Food *food);
+void PortF_Init(void)
 
 
 
@@ -89,10 +91,18 @@ int main(void){
 
 //function implementations 
 
-
-
-// You can use this timer only if you learn how it works
-
+void PortF_Init(void){ volatile unsigned long delay;
+  SYSCTL_RCGC2_R |= 0x00000020;     // 1) F clock
+  delay = SYSCTL_RCGC2_R;           // delay
+  GPIO_PORTF_LOCK_R = 0x4C4F434B;   // 2) unlock PortF PF0
+  GPIO_PORTF_CR_R = 0x1F;           // allow changes to PF4-0
+  GPIO_PORTF_AMSEL_R = 0x00;        // 3) disable analog function
+  GPIO_PORTF_PCTL_R = 0x00000000;   // 4) GPIO clear bit PCTL
+  GPIO_PORTF_DIR_R = 0x10;          // 5) PF0-3 input, PF4 output
+  GPIO_PORTF_AFSEL_R = 0x00;        // 6) no alternate function
+  GPIO_PORTF_PUR_R = 0x1F;          // enable pullup resistors on PF4,PF0
+  GPIO_PORTF_DEN_R = 0x1F;          // 7) enable digital pins PF4-PF0
+}
 
 
 void EdgeCounter_Init(void){  
@@ -175,5 +185,33 @@ void moveSnake(Snake *snake) {
             break;
     }
 }
-
+void initializeFood(Food *food) {
+  int Xtemp = xPositionsArray[rand() % xPositionSize];
+	int Ytemp = yPositionsArray[rand() % yPositionSize];
+			
+	while(checkCollision(&snake,Xtemp,Ytemp)||(snake.x[0] == Xtemp) || (snake.y[0] == Ytemp))
+	{
+		 Xtemp = xPositionsArray[rand() % xPositionSize];
+		 Ytemp = yPositionsArray[rand() % yPositionSize];
+	}
+    food->x = Xtemp;
+    food->y = Ytemp;
+}
+// Check if snake has eaten food
+bool checkFood(Snake *snake, Food *food) {
+    return (snake->x[0] == food->x && snake->y[0] == food->y);
+}
+// Generate new food at random position
+void generateNewFood(Food *food) {
+    int Xtemp = xPositionsArray[rand() % xPositionSize];
+		int Ytemp = yPositionsArray[rand() % yPositionSize];
+			
+		while(checkCollision(&snake,Xtemp,Ytemp)||(snake.x[0] == Xtemp) || (snake.y[0] == Ytemp))
+		{
+			Xtemp = xPositionsArray[rand() % xPositionSize];
+			Ytemp = yPositionsArray[rand() % yPositionSize];
+		}
+		food->x = Xtemp;
+    food->y = Ytemp;
+}
 
